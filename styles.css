@@ -1,0 +1,46 @@
+.mod-statistics {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.mod-statistics__input-card,
+.mod-statistics__result-card {
+    border: 1px solid var(--bs-border-color, #dee2e6);
+    box-shadow: none;
+}
+
+.mod-statistics__textarea {
+    min-height: 150px;
+    font-variant-numeric: tabular-nums;
+    resize: vertical;
+}
+
+.mod-statistics__result-card .h3 {
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+}
+
+.mod-statistics__result-card--emphasis {
+    border-width: 2px;
+}
+
+.mod-statistics__mode {
+    font-size: 1.5rem;
+}
+
+.mod-statistics__sorted {
+    font-family: var(--bs-font-monospace, monospace);
+    overflow-wrap: anywhere;
+    line-height: 1.7;
+}
+
+.mod-statistics__details summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+@media (max-width: 575.98px) {
+    .mod-statistics__controls {
+        display: block !important;
+    }
+}

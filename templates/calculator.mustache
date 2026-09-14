@@ -1,0 +1,130 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template mod_statistics/calculator
+
+    Example context (json):
+    {
+        Aqui tem que criar o context em inglês
+    }
+}}
+<div class="mod-statistics" data-region="statistics-calculator">
+    {{#intro}}
+        <div class="mod-statistics__intro mb-4">{{{intro}}}</div>
+    {{/intro}}
+
+    <div class="card mod-statistics__input-card mb-4">
+        <div class="card-body">
+            <label class="form-label font-weight-bold" for="statistics-data">{{labeldata}}</label>
+            <textarea id="statistics-data"
+                      class="form-control mod-statistics__textarea"
+                      data-region="data-input"
+                      rows="6"
+                      spellcheck="false"
+                      placeholder="{{placeholder}}"></textarea>
+            <div class="form-text text-muted mt-2">{{inputhelp}}</div>
+
+            <div class="d-flex flex-wrap align-items-end justify-content-between mt-3 mod-statistics__controls">
+                <fieldset class="border-0 p-0 m-0">
+                    <legend class="h6 mb-2">{{calculationtype}}</legend>
+                    <div role="group" aria-label="{{calculationtype}}">
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" name="statistics-variance-type" id="statistics-population"
+                                   value="population" data-region="variance-type" checked>
+                            <label class="form-check-label" for="statistics-population">{{population}}</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" name="statistics-variance-type" id="statistics-sample"
+                                   value="sample" data-region="variance-type">
+                            <label class="form-check-label" for="statistics-sample">{{sample}}</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <button type="button" class="btn btn-link px-0 mt-3" data-action="clear">{{clear}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-danger d-none" role="alert" data-region="error"></div>
+
+    <div class="row mod-statistics__results" data-region="results">
+        <div class="col-6 col-md-4 col-xl-3 mb-3">
+            <div class="card h-100 mod-statistics__result-card">
+                <div class="card-body"><div class="small text-muted">{{count}}</div><div class="h3 mb-0" data-result="count">-</div></div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mb-3">
+            <div class="card h-100 mod-statistics__result-card">
+                <div class="card-body"><div class="small text-muted">{{sum}}</div><div class="h3 mb-0" data-result="sum">-</div></div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mb-3">
+            <div class="card h-100 mod-statistics__result-card">
+                <div class="card-body"><div class="small text-muted">{{mean}}</div><div class="h3 mb-0" data-result="mean">-</div></div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mb-3">
+            <div class="card h-100 mod-statistics__result-card">
+                <div class="card-body"><div class="small text-muted">{{median}}</div><div class="h3 mb-0" data-result="median">-</div></div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mb-3">
+            <div class="card h-100 mod-statistics__result-card">
+                <div class="card-body"><div class="small text-muted">{{mode}}</div><div class="h3 mb-0 mod-statistics__mode" data-result="mode">-</div></div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mb-3">
+            <div class="card h-100 mod-statistics__result-card">
+                <div class="card-body"><div class="small text-muted">{{minimum}}</div><div class="h3 mb-0" data-result="minimum">-</div></div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mb-3">
+            <div class="card h-100 mod-statistics__result-card">
+                <div class="card-body"><div class="small text-muted">{{maximum}}</div><div class="h3 mb-0" data-result="maximum">-</div></div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-xl-3 mb-3">
+            <div class="card h-100 mod-statistics__result-card">
+                <div class="card-body"><div class="small text-muted">{{range}}</div><div class="h3 mb-0" data-result="range">-</div></div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+            <div class="card h-100 mod-statistics__result-card mod-statistics__result-card--emphasis">
+                <div class="card-body">
+                    <div class="small text-muted">{{variance}}</div>
+                    <div class="h3 mb-1" data-result="variance">-</div>
+                    <div class="small text-muted" data-region="variance-label">{{population}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+            <div class="card h-100 mod-statistics__result-card mod-statistics__result-card--emphasis">
+                <div class="card-body">
+                    <div class="small text-muted">{{standarddeviation}}</div>
+                    <div class="h3 mb-1" data-result="standarddeviation">-</div>
+                    <div class="small text-muted" data-region="standarddeviation-label">{{population}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <details class="mod-statistics__details mt-4 d-none" data-region="details">
+        <summary>{{sortedvalues}}</summary>
+        <div class="mt-3 p-3 bg-light rounded mod-statistics__sorted" data-region="sorted-values"></div>
+        <p class="small text-muted mt-3 mb-0">{{varianceexplanation}}</p>
+    </details>
+</div>
